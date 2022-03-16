@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "CATEGORIES")
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -20,6 +20,10 @@ public class Category {
     @NotBlank
     @Size(max = 50)
     private String title;
+
+    @NotBlank
+    @Size(max = 50)
+    private String qualification;
 
     @NotBlank
     @Size(max = 255)
@@ -33,8 +37,9 @@ public class Category {
     public Category() {
     }
 
-    public Category(String title, String description, String imageUrl) {
+    public Category(String title, String qualification, String description, String imageUrl) {
         this.title = title;
+        this.qualification = qualification;
         this.description = description;
         this.imageUrl = imageUrl;
     }
@@ -53,6 +58,14 @@ public class Category {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
     public String getDescription() {

@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -60,5 +60,4 @@ public class ProductController {
     public ResponseEntity<List<Product>> buscarCidade(@PathVariable("nomeCidade") String nomeCidade) {
         return ResponseEntity.ok(productService.listarPorCidade(nomeCidade));
     }
-
 }
