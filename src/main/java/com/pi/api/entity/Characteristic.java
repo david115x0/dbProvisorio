@@ -1,22 +1,21 @@
 package com.pi.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "characteristics")
-public class Characteristc {
+@Table(name = "CHARACTERISTICS")
+public class Characteristic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @NotBlank
     @Size(max = 255)
     private String name;
@@ -26,15 +25,13 @@ public class Characteristc {
     @Size(max = 255)
     private String icon;
 
-    @ManyToOne( cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_products")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Product product;
+    @ManyToMany(mappedBy = "characteristics")
+    private Set<Product> products;
 
-    public Characteristc() {
+    public Characteristic() {
     }
 
-    public Characteristc(String name, String icon) {
+    public Characteristic(String name, String icon) {
         this.name = name;
         this.icon = icon;
     }
@@ -43,7 +40,7 @@ public class Characteristc {
         return id;
     }
 
-    public Characteristc(Long id) {
+    public Characteristic(Long id) {
         this.id = id;
     }
 

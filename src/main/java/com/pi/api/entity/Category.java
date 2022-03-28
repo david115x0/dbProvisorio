@@ -1,29 +1,23 @@
 package com.pi.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "CATEGORIES")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @NotBlank
     @Size(max = 50)
     private String title;
-
-    @NotBlank
-    @Size(max = 50)
-    private String qualification;
 
     @NotBlank
     @Size(max = 255)
@@ -34,14 +28,16 @@ public class Category {
     @Size(max = 255)
     private String imageUrl;
 
+    private Long totalProducts;
+
     public Category() {
     }
 
-    public Category(String title, String qualification, String description, String imageUrl) {
+    public Category(String title, String description, String imageUrl, Long totalProducts) {
         this.title = title;
-        this.qualification = qualification;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.totalProducts = totalProducts;
     }
 
     public Long getId() {
@@ -60,14 +56,6 @@ public class Category {
         this.title = title;
     }
 
-    public String getQualification() {
-        return qualification;
-    }
-
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -82,5 +70,13 @@ public class Category {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Long getTotalProducts() {
+        return totalProducts;
+    }
+
+    public void setTotalProducts(Long totalProducts) {
+        this.totalProducts = totalProducts;
     }
 }
