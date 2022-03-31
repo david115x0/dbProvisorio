@@ -7,10 +7,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "ADMINS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Customer extends User {
+public class Admin extends User {
 
-	public Customer() {
+	public Admin() {
 	}
 }
